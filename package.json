@@ -1,0 +1,14 @@
+{
+  "name": "kollis-flow",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Kolli's Flow — AI chat and text-to-image web app",
+  "scripts": { "start": "node server.js", "dev": "node --watch server.js" },
+  "engines": { "node": ">=20" },
+  "dependencies": {
+    "@huggingface/inference": "^4.7.1",
+    "dotenv": "^16.4.7",
+    "express": "^5.1.0"
+  }
+}

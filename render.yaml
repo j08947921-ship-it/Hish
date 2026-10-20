@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: kollis-flow
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: HF_TOKEN
+        sync: false
