@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0b0a16">
+  <meta name="description" content="Kolli's Flow — chat with AI and turn your ideas into images.">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="icon" href="/icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/styles.css">
+  <title>Kolli's Flow — AI Studio</title>
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar" id="sidebar">
+    <div class="brand"><div class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2.5 14.7 9.3 21.5 12 14.7 14.7 12 21.5 9.3 14.7 2.5 12 9.3 9.3 12 2.5Z" stroke="white" stroke-width="1.6" stroke-linejoin="round"/><path d="m18.3 2 .9 2.8L22 5.7l-2.8.9-.9 2.8-.9-2.8-2.8-.9 2.8-.9.9-2.8Z" fill="#fff"/></svg></div><div><div class="brand-name">Kolli's Flow</div><div class="brand-sub">Your ideas, in motion</div></div></div>
+    <button class="new-chat" id="newChat"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg> New conversation</button>
+    <div class="side-label">Recent conversations</div>
+    <div class="history" id="history"><div class="history-empty">Your chats will appear here.</div></div>
+    <div class="side-bottom">
+      <button class="side-tool" id="setupBtn"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.6"/><path d="m19.4 15 .1.1 1.4 1.1-1.4 2.4-1.7-.7a8 8 0 0 1-1.7 1l-.3 1.8h-2.8l-.3-1.8a8 8 0 0 1-1.7-1l-1.7.7-1.4-2.4L7.3 15a7.8 7.8 0 0 1 0-2l-1.4-1.1 1.4-2.4 1.7.7a8 8 0 0 1 1.7-1l.3-1.8h2.8l.3 1.8a8 8 0 0 1 1.7 1l1.7-.7 1.4 2.4-1.4 1.1a7.8 7.8 0 0 1-.1 2Z" stroke="currentColor" stroke-width="1.1" stroke-linejoin="round"/></svg> Connect AI / Setup guide</button>
+      <button class="side-tool" id="clearHistory"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M4 7h16M10 11v6m4-6v6M6 7l1 14h10l1-14M9 7V4h6v3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Clear conversation history</button>
+      <div class="side-foot">Built for curiosity ✦<br>AI can make mistakes — verify important info.</div>
+    </div>
+  </aside>
+  <div class="mobile-overlay" id="overlay"></div>
+  <main class="main">
+    <header class="topbar">
+      <div class="top-left">
+        <button class="icon-btn menu-btn" id="menuBtn" aria-label="Open menu"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></button>
+        <div class="mobile-brand"><div class="brand-mark"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2.5 14.7 9.3 21.5 12 14.7 14.7 12 21.5 9.3 14.7 2.5 12 9.3 9.3 12 2.5Z" stroke="white" stroke-width="1.6" stroke-linejoin="round"/></svg></div><span class="brand-word">Kolli's Flow</span></div>
+        <div class="mode-switch" role="tablist" aria-label="Choose AI mode">
+          <button class="mode-btn active" data-mode="chat" role="tab" aria-selected="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M20 11.5a7.5 7.5 0 0 1-7.5 7.5H5l1.3-3.4A7.5 7.5 0 1 1 20 11.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg><span class="mode-label">Chat</span></button>
+          <button class="mode-btn" data-mode="image" role="tab" aria-selected="false"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="4" stroke="currentColor" stroke-width="1.6"/><circle cx="8.5" cy="8.5" r="1.5" stroke="currentColor" stroke-width="1.4"/><path d="m21 15-5-5L5 21" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg><span class="mode-label">Create image</span></button>
+        </div>
+      </div>
+      <div class="top-right"><div class="status" id="status"><span class="dot" id="statusDot"></span><span id="statusText">Checking AI…</span></div><button class="icon-btn" id="helpBtn" aria-label="Setup guide" title="Setup guide"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/><path d="M9.7 9a2.4 2.4 0 1 1 4.2 1.6c-1 .9-1.9 1.2-1.9 2.7M12 16.9v.1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button></div>
+    </header>
+    <section class="page" id="page">
+      <div class="welcome" id="welcome">
+        <div class="eyebrow">Your personal AI studio</div>
+        <h1>Hey there,<br><span class="grad">what's flowing?</span></h1>
+        <p class="lead" id="welcomeLead">Ask anything, explore an idea, or turn a few words into an image. Let's make something great.</p>
+        <div class="cards" id="ideaCards">
+          <button class="idea-card" data-mode="chat" data-prompt="Explain a difficult topic in a simple way, with an example."><span class="idea-arrow">↗</span><span class="idea-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 3v3m0 12v3M3 12h3m12 0h3M5.6 5.6l2.1 2.1m8.6 8.6 2.1 2.1m0-12.8-2.1 2.1m-8.6 8.6-2.1 2.1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.6"/></svg></span><div class="idea-title">Learn something new</div><div class="idea-desc">Break down any topic in simple words.</div></button>
+          <button class="idea-card" data-mode="image" data-prompt="A cinematic neon-blue and violet futuristic city at night, reflective streets, dreamy atmosphere, high detail, professional digital art."><span class="idea-arrow">↗</span><span class="idea-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="m12 3 1.9 5.8L20 11l-6.1 2.2L12 19l-1.9-5.8L4 11l6.1-2.2L12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="m19 15 .8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8L19 15Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg></span><div class="idea-title">Create an image</div><div class="idea-desc">Bring your imagination to life with AI.</div></button>
+          <button class="idea-card" data-mode="chat" data-prompt="Give me 5 creative business ideas I can start with a small budget in India."><span class="idea-arrow">↗</span><span class="idea-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M4 19V5m0 14h17M7 15l4-4 3 2 6-7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 6h4v4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div class="idea-title">Plan an idea</div><div class="idea-desc">Turn a small idea into a useful plan.</div></button>
+          <button class="idea-card" data-mode="chat" data-prompt="Help me write a professional Instagram caption for my next post."><span class="idea-arrow">↗</span><span class="idea-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L8 18l-4 1 1-4 11.5-11.5Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div class="idea-title">Write something</div><div class="idea-desc">Captions, stories, scripts and more.</div></button>
+        </div>
+      </div>
+      <div class="conversation hidden" id="conversation" aria-live="polite"></div>
+    </section>
+    <div class="composer-wrap"><div class="composer-inner">
+      <form class="composer" id="composerForm">
+        <label class="sr-only" for="prompt">Message Kolli's Flow</label>
+        <textarea id="prompt" class="prompt" rows="1" placeholder="Ask Kolli's Flow anything…" maxlength="18000"></textarea>
+        <div class="composer-bottom"><div class="composer-actions">
+          <button class="tool-btn" type="button" id="modeTool"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="4" stroke="currentColor" stroke-width="1.5"/><circle cx="8.5" cy="8.5" r="1.5" stroke="currentColor"/><path d="m21 15-5-5L5 21" stroke="currentColor" stroke-width="1.5"/></svg><span>Image mode</span></button>
+          <button class="tool-btn" type="button" id="clearInput" title="Clear message"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M4 7h16M10 11v6m4-6v6M6 7l1 14h10l1-14M9 7V4h6v3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        </div><div class="send-actions"><span class="hint" id="keyHint">Connect an API token to begin</span><button class="send-btn" type="submit" id="sendBtn"><span id="sendLabel">Send</span><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div></div>
+      </form><div class="disclaimer">Kolli's Flow can make mistakes. Double-check important information. Image generation may use inference credits.</div>
+    </div></div>
+  </main>
+</div>
+<div class="modal-backdrop hidden" id="setupModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><div class="modal">
+  <div class="modal-head"><h2 id="modalTitle">Connect Kolli's Flow</h2><button class="icon-btn" id="closeModal" aria-label="Close setup guide">✕</button></div>
+  <p>This app uses Hugging Face Inference Providers for Qwen chat and AI image creation. Connect your own token on the server so it is not exposed in the public website.</p>
+  <div class="steps">
+    <div class="step"><span class="step-no">1</span><span>Open <a class="modal-link" href="https://huggingface.co/settings/tokens" target="_blank" rel="noopener">huggingface.co/settings/tokens</a> and create an access token with <b>Inference Providers</b> permission.</span></div>
+    <div class="step"><span class="step-no">2</span><span>In this project folder, rename <code>.env.example</code> to <code>.env</code> and replace the sample value with your token: <code>HF_TOKEN=hf_…</code>.</span></div>
+    <div class="step"><span class="step-no">3</span><span>Run <code>npm install</code>, then <code>npm start</code>. Refresh this page. For hosting, add <code>HF_TOKEN</code> as a server environment secret.</span></div>
+  </div>
+  <p id="setupStatusText">Chat and image creation will become available once the server is connected. The model/provider may require available credits.</p>
+  <div class="modal-footer"><button class="secondary-btn" id="refreshStatus">Check connection</button><button class="primary-btn" id="gotIt">Got it</button></div>
+</div></div>
+<div class="toast hidden" id="toast" role="status"></div>
+<script src="/app.js" defer></script>
+</body>
+</html>

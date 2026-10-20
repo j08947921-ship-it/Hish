@@ -1,0 +1,10 @@
+{
+  "name": "Kolli's Flow AI Studio",
+  "short_name": "Kolli's Flow",
+  "description": "Chat with AI and create images from text.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0b0a16",
+  "theme_color": "#0b0a16",
+  "icons": [{ "src": "/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }]
+}
